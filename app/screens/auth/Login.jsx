@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         textTransform: 'capitalize',
         marginBottom: 50,
-        color: '#00D731',
+        color: '#009387',
         marginLeft: 100
     },
     loginHeadingActive: {
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         textTransform: 'capitalize',
         marginBottom: 50,
-        color: '#d23432',
+        color: '#00D7',
         marginLeft: 50
     },
     input: {
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
 
     },
     priBtn: {
-        backgroundColor: '#00D731',
+        backgroundColor: '#009387',
         width: 300,
         paddingTop: 15,
         paddingBottom: 15,

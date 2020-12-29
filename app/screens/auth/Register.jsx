@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
-
+import Feather from 'react-native-vector-icons/Feather';
 
 
 const Register = ({ navigation }) => {
@@ -82,21 +82,66 @@ const Register = ({ navigation }) => {
             placeholder="Email address"
             autoCapitalize="none"
         />
+        <TextInput style={styles.input}
+            placeholder="Username"
+            autoCapitalize="none"
+        />
         <TextInput style={styles.input} placeholder="Phone number"
             autoCapitalize='none'
         />
-        <TextInput secureTextEntry={data.secureTextEntry ? true : false}
-            style={styles.input}
-            placeholder="create password"
-            autoCapitalize="none"
-            onChangeText={(val) => handlePasswordChange(val)}
-        />
-        <TextInput secureTextEntry={data.confirm_secureTextEntry ? true : false}
-            style={styles.input}
-            placeholder="confirm password"
-            autoCapitalize="none"
-            onChangeText={(val) => handleConfirmPasswordChange(val)}
-        />
+        <View>
+            <TextInput secureTextEntry={data.secureTextEntry ? true : false}
+                style={styles.input}
+                placeholder="Password"
+                autoCapitalize="none"
+                onChangeText={(val) => handlePasswordChange(val)}
+            /><TouchableOpacity
+                onPress={updateSecureTextEntry}
+            >
+                {data.secureTextEntry ?
+                    <Feather
+                        name="eye-off"
+                        color="grey"
+                        size={20}
+                        style={styles.feather}
+                    />
+                    :
+                    <Feather
+                        name="eye"
+                        color="grey"
+                        size={20}
+                        style={styles.feather}
+                    />
+                }
+            </TouchableOpacity>
+        </View>
+        <View>
+            <TextInput secureTextEntry={data.confirm_secureTextEntry ? true : false}
+                style={styles.input}
+                placeholder="Confirm password"
+                autoCapitalize="none"
+                onChangeText={(val) => handleConfirmPasswordChange(val)}
+            />
+            <TouchableOpacity
+                onPress={updateConfirmSecureTextEntry}
+            >
+                {data.secureTextEntry ?
+                    <Feather
+                        name="eye-off"
+                        color="grey"
+                        size={20}
+                        style={styles.feather}
+                    />
+                    :
+                    <Feather
+                        name="eye"
+                        color="grey"
+                        size={20}
+                        style={styles.feather}
+                    />
+                }
+            </TouchableOpacity>
+        </View>
         <View style={styles.textPrivate}>
             <Text style={styles.color_textPrivate}>
                 By signing up you agree to our
@@ -129,7 +174,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         textTransform: 'capitalize',
         marginBottom: 50,
-        color: '#00D731',
+        color: '#009387',
         marginLeft: 100
     },
     loginHeadingActive: {
@@ -137,7 +182,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         textTransform: 'capitalize',
         marginBottom: 50,
-        color: '#d23432',
+        color: '#00D7',
         marginLeft: 50
     },
     input: {
@@ -152,7 +197,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     priBtn: {
-        backgroundColor: '#00D731',
+        backgroundColor: '#009387',
         width: 300,
         paddingTop: 15,
         marginTop: 30,
@@ -178,6 +223,10 @@ const styles = StyleSheet.create({
     },
     color_textPrivate: {
         color: 'grey'
+    },
+    feather: {
+        marginLeft: '83%',
+        marginTop: -52,
     }
 
 })

@@ -106,7 +106,7 @@ class Intro extends Component {
                     dotClickEnabled={true}
                     onSkip={this._onSkip}
                     dotStyle={{ backgroundColor: '#00D7' }}
-                    activeDotStyle={{ backgroundColor: '#8DD070' }}
+                    activeDotStyle={{ backgroundColor: '#009387' }}
                     renderSkipButton={this._renderSkipButton}
                     renderDoneButton={this._renderDoneButton}
                     renderPrevButton={this._renderPrevButton}

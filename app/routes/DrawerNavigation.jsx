@@ -147,19 +147,7 @@ export default function DrawerNavigation() {
             <Drawer.Screen name="Fund Wallet" component={FundStackScreen} />
             <Drawer.Screen name="Send Money" component={TransferStackScreen} />
             <Drawer.Screen name="Receive Payment" component={ReceiveStackScreen} />
-            <Drawer.Section>
-                <DrawerItem
-                    icon={({ color, size }) => (
-                        <Icon
-                            name="exit-to-app"
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                    label="Sign Out"
-                    onPress={() => { signOut() }}
-                />
-            </Drawer.Section>
+
         </Drawer.Navigator>
 
     );

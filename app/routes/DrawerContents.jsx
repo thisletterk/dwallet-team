@@ -76,8 +76,8 @@ const DrawerContents = (props) => {
                                 />
                             )}
                             label='Expenses'
-                            // onPress={() => { props.navigation.navigate('Expenses') }}
-                            component={ExpenseStackScreen}
+                            onPress={() => { props.navigation.navigate('Expenses') }}
+
                         />
 
                     </Drawer.Section>

@@ -25,8 +25,10 @@ const MainScreenNavigation = () => {
     return (
         <Tab.Navigator
             initialRouteName="Dashboard"
-            activeColor="#e91e63"
-            style={{ backgroundColor: 'tomato' }}
+            activeColor="#009387"
+
+            barStyle={{ backgroundColor: '#ffff' }}
+
         >
             <Tab.Screen
                 name="Transactions"
@@ -43,6 +45,7 @@ const MainScreenNavigation = () => {
                 component={DashboardStackScreen}
                 options={{
                     tabBarLabel: 'Dashboard',
+                    tabBarColor: '#694fad',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
