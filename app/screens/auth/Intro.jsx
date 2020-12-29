@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, Button } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 export const { width, height } = Dimensions.get('window');
 const title_height = height * 0.13;
 import Login from './Login';
+
 
 
 const slides = [
@@ -24,6 +25,7 @@ const slides = [
         image: require('../../../assets/wallet.png'),
     }
 ];
+
 
 class Intro extends Component {
     state = {
@@ -83,18 +85,16 @@ class Intro extends Component {
     render() {
         if (this.state.showRealApp) {
             return (
+
+
                 <View
-                    style={{
-                        flex: 1,
-                        // justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: 50
-                    }}
-                >
-
-                    <Login />
-
+                    style={styles.button}>
+                    <Button
+                        title='Login to Continue'
+                        onPress={() => this.props.navigation.navigate('Login')}
+                    />
                 </View>
+
             );
         } else {
             return (
@@ -105,7 +105,7 @@ class Intro extends Component {
                     showSkipButton={true}
                     dotClickEnabled={true}
                     onSkip={this._onSkip}
-                    dotStyle={{ backgroundColor: 'blue' }}
+                    dotStyle={{ backgroundColor: '#00D7' }}
                     activeDotStyle={{ backgroundColor: '#8DD070' }}
                     renderSkipButton={this._renderSkipButton}
                     renderDoneButton={this._renderDoneButton}
@@ -136,6 +136,12 @@ const styles = StyleSheet.create({
         color: '#000000',
         fontSize: 18,
         margin: 15,
+    },
+    button: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
     }
 
 
