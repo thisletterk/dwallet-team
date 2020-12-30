@@ -21,10 +21,10 @@ const ProfileStack = createStackNavigator();
 
 //bottom screen start here
 
-const MainScreenNavigation = () => {
+const BottomNavigation = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Dashboard"
+            initialRouteName={Dashboard}
             activeColor="#009387"
 
             barStyle={{ backgroundColor: '#ffff' }}
@@ -40,6 +40,7 @@ const MainScreenNavigation = () => {
                     ),
                 }}
             />
+
             <Tab.Screen
                 name="Dashboard"
                 component={DashboardStackScreen}
@@ -66,7 +67,7 @@ const MainScreenNavigation = () => {
 }
 
 
-export default MainScreenNavigation;
+export default BottomNavigation;
 
 
 
@@ -147,82 +148,6 @@ const ProfileStackScreen = ({ navigation }) => {
         </ProfileStack.Navigator>
     );
 }
-
-// const FundStackScreen = ({ navigation }) => {
-//     return (
-//         <FundStack.Navigator screenOptions={{
-//             headerStyle: {
-//                 backgroundColor: '#009387',
-//             },
-//             headerTintColor: '#fff',
-//             headerTitleStyle: {
-//                 fontWeight: 'bold'
-//             }
-//         }}>
-//             <FundStack.Screen name='Fund Wallet' component={Funds} options={{
-//                 headerLeft: () => (
-//                     <MaterialCommunityIcons.Button
-//                         name='menu' size={25}
-//                         backgroundColor='#009387'
-//                         onPress={() => navigation.openDrawer()}
-//                     />
-//                 )
-//             }} />
-//         </FundStack.Navigator>
-//     );
-// }
-
-// const TransferStackScreen = ({ navigation }) => {
-//     return (
-//         <TransferStack.Navigator screenOptions={{
-//             headerStyle: {
-//                 backgroundColor: '#009387',
-//             },
-//             headerTintColor: '#fff',
-//             headerTitleStyle: {
-//                 fontWeight: 'bold'
-//             }
-//         }}>
-//             <TransferStack.Screen name='Send Money' component={Transfer} options={{
-//                 headerLeft: () => (
-//                     <MaterialCommunityIcons.Button
-//                         name='menu' size={25}
-//                         backgroundColor='#009387'
-//                         onPress={() => navigation.openDrawer()}
-//                     />
-//                 )
-//             }} />
-//         </TransferStack.Navigator>
-//     );
-// }
-
-// const ReceiveStackScreen = ({ navigation }) => {
-//     return (
-//         <ReceiveStack.Navigator screenOptions={{
-//             headerStyle: {
-//                 backgroundColor: '#009387',
-//             },
-//             headerTintColor: '#fff',
-//             headerTitleStyle: {
-//                 fontWeight: 'bold'
-//             }
-//         }}>
-//             <ReceiveStack.Screen name='Receive Payment' component={Receive} options={{
-//                 headerLeft: () => (
-//                     <MaterialCommunityIcons.Button
-//                         name='menu' size={25}
-//                         backgroundColor='#009387'
-//                         onPress={() => navigation.openDrawer()}
-//                     />
-//                 )
-//             }} />
-//         </ReceiveStack.Navigator>
-//     );
-// }
-
-
-
-
 
 
 

@@ -2,12 +2,10 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import DrawerNavigator from './app/routes/DrawerNavigation';
 import AsyncStorage from '@react-native-community/async-storage'
 import { createStackNavigator } from '@react-navigation/stack';
-import BottomNavigator from './app/routes/MainScreenNavigation';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import MainScreenNavigator from '../dwallet/app/routes/MainScreenNavigation';
+import BottomNavigator from './app/routes/BottomNavigation';
 import DrawerContents from '../dwallet/app/routes/DrawerContents';
 import RootStackNavigation from '../dwallet/app/routes/RootStackNavigation';
 import { AuthContext } from './components/context';
@@ -155,8 +153,8 @@ const App = () => {
 
         {loginState.userToken !== null ? (
           <Drawer.Navigator drawerContent={props => <DrawerContents {...props} />}>
-            <Drawer.Screen name='Expenses' component={MainScreenNavigator} />
-            {/* <Drawer.Screen name='Expenses' component={Expenses} /> */}
+            <Drawer.Screen name='Home' component={BottomNavigator} />
+            <Drawer.Screen name='Expenses' component={Expenses} />
             <Drawer.Screen name='Fund Wallet' component={Funds} />
             <Drawer.Screen name='Send Money' component={Transfer} />
             <Drawer.Screen name='Receive Payment' component={Receive} />

@@ -1,22 +1,17 @@
 import {
-    createDrawerNavigator,
-    DrawerContent,
+
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
 import React from 'react';
 import Expenses from '../screens/services/expenses/Expenses';
 import Funds from '../screens/services/funds/Funds';
-import Transfer from '../screens/services/transfer/Transfer';
-import Receive from '../screens/services/receive/Receive';
-import Dashboard from '../screens/home/Dashboard';
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
     Avatar,
     Title,
     Caption,
-    Paragraph,
     Drawer,
     Text,
     TouchableRipple,
@@ -65,6 +60,22 @@ const DrawerContents = (props) => {
                         </View>
 
                     </View>
+
+                    <Drawer.Section style={styles.drawerSection}>
+                        <DrawerItem
+                            icon={({ color, size }) => (
+                                <MaterialCommunityIcons
+                                    name='home'
+                                    color={color}
+                                    size={size}
+                                />
+                            )}
+                            label='Home'
+                            onPress={() => { props.navigation.navigate('Dashboard') }}
+
+                        />
+
+                    </Drawer.Section>
 
                     <Drawer.Section style={styles.drawerSection}>
                         <DrawerItem
@@ -212,7 +223,8 @@ const styles = StyleSheet.create({
     },
     userInfoSection: {
         paddingLeft: 20,
-        marginTop: 40,
+        marginTop: 30,
+        marginBottom: 40,
     },
     title: {
         fontSize: 16,

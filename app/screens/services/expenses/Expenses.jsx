@@ -4,6 +4,10 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 const Expenses = ({ navigation }) => {
     return (<View style={styles.container}>
         <Text>Expenses</Text>
+        <Button
+            title="Go to Dashboard"
+            onPress={() => navigation.openDrawer()}
+        />
 
     </View>);
 }
