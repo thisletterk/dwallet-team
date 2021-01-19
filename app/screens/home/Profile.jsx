@@ -9,13 +9,7 @@ import {
     TouchableRipple,
     Switch
 } from 'react-native-paper';
-import {
-
-    DrawerContentScrollView,
-    DrawerItem
-} from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 
 
@@ -130,7 +124,7 @@ const Profile = () => {
                 </View>
 
                 <View style={{ marginEnd: '60%', marginTop: 25 }}>
-                    <Text>Account seurity</Text>
+                    <Text>Account security</Text>
                 </View>
                 <View>
                     <View style={{ flexDirection: 'row' }}>
@@ -199,7 +193,6 @@ const Profile = () => {
 
 export default Profile;
 
-let ScreenHeight = Dimensions.get('window').height;
 let ScreenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({

@@ -1,18 +1,15 @@
-import React from 'react'
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Transactions from '../screens/home/Transactions';
 import Dashboard from '../screens/home/Dashboard';
 import Profile from '../screens/home/Profile';
 import Expenses from '../screens/services/expenses/Expenses';
+import Funds from '../screens/services/funds/Funds';
+
 
 const Tab = createMaterialBottomTabNavigator();
-
-
 const DashboardStack = createStackNavigator();
 const TransactionStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
@@ -21,10 +18,10 @@ const ProfileStack = createStackNavigator();
 
 //bottom screen start here
 
-const BottomNavigation = () => {
+const BottomNavigation = (props) => {
     return (
         <Tab.Navigator
-            initialRouteName={Dashboard}
+            initialRouteName='Dashboard'
             activeColor="#009387"
 
             barStyle={{ backgroundColor: '#ffff' }}
@@ -46,7 +43,7 @@ const BottomNavigation = () => {
                 component={DashboardStackScreen}
                 options={{
                     tabBarLabel: 'Dashboard',
-                    tabBarColor: '#694fad',
+
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
@@ -70,11 +67,8 @@ const BottomNavigation = () => {
 export default BottomNavigation;
 
 
-
-
-
-
 //bottom screen ENDS here
+
 
 
 const DashboardStackScreen = ({ navigation }) => {
@@ -97,6 +91,7 @@ const DashboardStackScreen = ({ navigation }) => {
                     />
                 )
             }} />
+
         </DashboardStack.Navigator>
     );
 }
@@ -148,6 +143,9 @@ const ProfileStackScreen = ({ navigation }) => {
         </ProfileStack.Navigator>
     );
 }
+
+
+
 
 
 

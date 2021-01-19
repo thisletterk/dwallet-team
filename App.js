@@ -1,5 +1,9 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme
+} from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage'
@@ -13,6 +17,15 @@ import Funds from '../dwallet/app/screens/services/funds/Funds';
 import Transfer from '../dwallet/app/screens/services/transfer/Transfer';
 import Receive from '../dwallet/app/screens/services/receive/Receive';
 import Expenses from '../dwallet/app/screens/services/expenses/Expenses';
+import ExpenseStackScreen from './app/screens/services/expenses/ExpenseStackScreen';
+import FundStackScreen from '../dwallet/app/screens/services/funds/FundStackScreen';
+import Dashboard from '../dwallet/app/screens/home/Dashboard';
+import DashboardStackScreen from '../dwallet/app/screens/home/DashboardStackScreen';
+import {
+  Provider as PaperProvider,
+  DefaultTheme as PaperDefaultTheme,
+  DarkTheme as PaperDarkTheme
+} from 'react-native-paper';
 
 
 
@@ -22,9 +35,10 @@ const Drawer = createDrawerNavigator();
 
 
 
+
 const App = () => {
   //Authenticate isSignedIn STARTS here
-  // const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const initialLoginState = {
     isLoading: true,
@@ -32,29 +46,29 @@ const App = () => {
     userToken: null,
   };
 
-  // const CustomDefaultTheme = {
-  //   ...NavigationDefaultTheme,
-  //   ...PaperDefaultTheme,
-  //   colors: {
-  //     ...NavigationDefaultTheme.colors,
-  //     ...PaperDefaultTheme.colors,
-  //     background: '#ffffff',
-  //     text: '#333333'
-  //   }
-  // }
+  const CustomDefaultTheme = {
+    ...NavigationDefaultTheme,
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      background: '#ffffff',
+      text: '#333333'
+    }
+  }
 
-  // const CustomDarkTheme = {
-  //   ...NavigationDarkTheme,
-  //   ...PaperDarkTheme,
-  //   colors: {
-  //     ...NavigationDarkTheme.colors,
-  //     ...PaperDarkTheme.colors,
-  //     background: '#333333',
-  //     text: '#ffffff'
-  //   }
-  // }
+  const CustomDarkTheme = {
+    ...NavigationDarkTheme,
+    ...PaperDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      background: '#333333',
+      text: '#ffffff'
+    }
+  }
 
-  // const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   const loginReducer = (prevState, action) => {
     switch (action.type) {
@@ -119,9 +133,9 @@ const App = () => {
       // setUserToken('fgkj');
       // setIsLoading(false);
     },
-    // toggleTheme: () => {
-    //   setIsDarkTheme(isDarkTheme => !isDarkTheme);
-    // }
+    toggleTheme: () => {
+      setIsDarkTheme(isDarkTheme => !isDarkTheme);
+    }
   }), []);
 
   useEffect(() => {
@@ -148,37 +162,31 @@ const App = () => {
   }
   //isSignedIn ENDS hERE
   return (
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
+    <PaperProvider theme={theme}>
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer theme={theme}>
 
-        {loginState.userToken !== null ? (
-          <Drawer.Navigator drawerContent={props => <DrawerContents {...props} />}>
-            <Drawer.Screen name='Home' component={BottomNavigator} />
-            <Drawer.Screen name='Expenses' component={Expenses} />
-            <Drawer.Screen name='Fund Wallet' component={Funds} />
-            <Drawer.Screen name='Send Money' component={Transfer} />
-            <Drawer.Screen name='Receive Payment' component={Receive} />
-          </Drawer.Navigator>
-        )
-          :
-          <RootStackNavigation />
-        }
+          {loginState.userToken !== null ? (
+            <Drawer.Navigator drawerContent={props => <DrawerContents {...props} />}>
+              <Drawer.Screen name='Home' component={BottomNavigator} />
+              <Drawer.Screen name='Expenses' component={ExpenseStackScreen} />
+              <Drawer.Screen name='Fund Wallet' component={FundStackScreen} />
+              <Drawer.Screen name='Send Money' component={Transfer} />
+              <Drawer.Screen name='Receive Payment' component={Receive} />
+            </Drawer.Navigator>
+          )
+            :
+            <RootStackNavigation />
+          }
 
 
 
-      </NavigationContainer>
-    </AuthContext.Provider>
-
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </PaperProvider>
   );
 }
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
 

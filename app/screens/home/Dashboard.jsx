@@ -1,61 +1,54 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem,
-} from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StackRouter } from 'react-navigation';
+import React from 'react';
+import { View, Text, StyleSheet, Button, StatusBar, Image } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 
-const DashboardStack = createStackNavigator();
-const Stack = createStackNavigator();
-
-const DashbordStackScreen = ({ navigation }) => {
-    return (
-        <DashboardStack.Navigator screenOptions={{
-            headerStyle: {
-                backgroundColor: '#009387',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold'
-            }
-        }}>
-            <DashboardStack.Screen name='Dashboard' component={Dashboard} options={{
-                headerLeft: () => (
-                    <MaterialCommunityIcons.Button
-                        name='menu' size={25}
-                        backgroundColor='#009387'
-                        onPress={() => navigation.openDrawer()}
-                    />
-                )
-            }} />
-        </DashboardStack.Navigator>
-    );
-}
 
 
 const Dashboard = ({ navigation }) => {
 
-    return (
-        <View style={{ justifyContent: 'center', flex: 2, alignItems: 'center' }} options={{
-            headerLeft: () => (
-                <MaterialCommunityIcons.Button
-                    name='menu' size={25}
-                    backgroundColor='#009387'
-                    onPress={() => navigation.openDrawer()}
-                />
-            )
-        }}>
-            <Text>DASBOARD IS HEREE</Text>
-            <Button title="Open drawer" onPress={() => navigation.openDrawer()} />
+    const { colors } = useTheme();
+    const theme = useTheme();
 
-        </View>
+
+    return (
+        <View style={styles.container} >
+            <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+
+            <View style={{ flex: 2, backgroundColor: '#fff', }}>
+                <View style={{ paddingTop: 80, paddingLeft: 20 }}>
+                    <Text>Available balance</Text>
+                    <Text style={{ fontSize: 40, margin: 10 }}>{'\u20A6'}0</Text>
+                    <Text>FUND WALLET</Text>
+                </View>
+            </View>
+
+
+            <View style={{ flex: 3, backgroundColor: '#fff', padding: 20 }}>
+                <Text>TRANSACTION HISTORY</Text>
+                <View
+                    style={{ justifyContent: 'center', alignItems: 'center', padding: 110 }}
+                ><Text>No transactions here</Text>
+                    <Text>send money?</Text></View>
+            </View>
+
+
+            <View style={{ flex: 1, }}>
+                <View style={{ paddingLeft: 20 }}>
+                    <Text>Expense Control</Text>
+                    <View style={{ backgroundColor: '#fff', height: 80, borderRadius: 5 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 30 }}>
+                            <Text>Set up your expense control</Text>
+                            <Image source={require('../../../assets/wallet.png')}
+                                style={styles.wallet} />
+                        </View>
+                    </View>
+
+                </View>
+            </View>
+
+
+        </View >
 
 
     );
@@ -63,4 +56,17 @@ const Dashboard = ({ navigation }) => {
 }
 
 export default Dashboard;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#F9FCFF',
+    },
+    wallet: {
+        width: 60,
+        height: 50,
+        marginTop: -18,
+    }
+})
 

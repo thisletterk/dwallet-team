@@ -1,14 +1,11 @@
 import {
-
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
 import React from 'react';
-import Expenses from '../screens/services/expenses/Expenses';
-import Funds from '../screens/services/funds/Funds';
-import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
+    useTheme,
     Avatar,
     Title,
     Caption,
@@ -22,22 +19,19 @@ import { AuthContext } from '../../components/context';
 
 
 
-const ExpenseStack = createStackNavigator();
-
-
-
-
 //DRAWER: Avatar, Name, Wallet ID, menu STARTS here
 
 const DrawerContents = (props) => {
 
+    const paperTheme = useTheme();
+
     //creating a state to control change in night mode
-    const [isNightMode, setIsNightMode] = React.useState(false);
+    // const [isDarkTheme, setisDarkTheme] = React.useState(false);
     const { signOut, toggleTheme } = React.useContext(AuthContext);
 
-    const nightMode = () => {
-        setIsNightMode(!isNightMode);
-    }
+    // const toggleTheme = () => {
+    //     setisDarkTheme(!isDarkTheme);
+    // }
     //state for night mode ENDS here
     return (
         <View style={{ flex: 1 }}>
@@ -118,6 +112,7 @@ const DrawerContents = (props) => {
                             )}
                             label='Send Money'
                             onPress={() => { props.navigation.navigate('Send Money') }}
+
                         />
                     </Drawer.Section>
 
@@ -135,11 +130,11 @@ const DrawerContents = (props) => {
                         />
                     </Drawer.Section>
                     <Drawer.Section title='Preference'>
-                        <TouchableRipple onPress={() => nightMode()}>
+                        <TouchableRipple onPress={() => toggleTheme()}>
                             <View style={styles.nightMode}>
-                                <Text>Night Mode</Text>
+                                <Text>Dark Mode</Text>
                                 <View pointerEvents='none'>
-                                    <Switch value={isNightMode} />
+                                    <Switch value={paperTheme.dark} />
                                 </View>
                             </View>
                         </TouchableRipple>
@@ -168,54 +163,7 @@ export default DrawerContents;
 
 
 //DRAWER: Avatar, Name, Wallet ID, menu ENDS here
-const ExpenseStackScreen = ({ navigation }) => {
-    return (
-        <ExpenseStack.Navigator screenOptions={{
-            headerStyle: {
-                backgroundColor: '#009387',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold'
-            }
-        }}>
-            <ExpenseStack.Screen name='Expenses' component={Expenses} options={{
-                headerLeft: () => (
-                    <MaterialCommunityIcons.Button
-                        name='menu' size={25}
-                        backgroundColor='#009387'
-                        onPress={() => navigation.openDrawer()}
-                    />
-                )
-            }}
-            />
-        </ExpenseStack.Navigator>
-    );
-}
 
-const FundStackScreen = ({ navigation }) => {
-    return (
-        <FundStack.Navigator screenOptions={{
-            headerStyle: {
-                backgroundColor: '#009387',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold'
-            }
-        }}>
-            <FundStack.Screen name='Fund Wallet' component={Funds} options={{
-                headerLeft: () => (
-                    <MaterialCommunityIcons.Button
-                        name='menu' size={25}
-                        backgroundColor='#009387'
-                        onPress={() => navigation.openDrawer()}
-                    />
-                )
-            }} />
-        </FundStack.Navigator>
-    );
-}
 
 const styles = StyleSheet.create({
     drawerContent: {

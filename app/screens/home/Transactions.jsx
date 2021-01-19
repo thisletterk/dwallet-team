@@ -1,9 +1,13 @@
+import { useTheme } from '@react-navigation/native';
 import React from 'react'
 import { Text, View } from 'react-native';
 
 const Transactions = () => {
+
+    const { colors } = useTheme();
+
     return (<View style={{ justifyContent: 'center', flex: 2, alignItems: 'center' }}>
-        <Text>Transcation Screen</Text>
+        <Text style={{ color: colors.text }}>Transcation Screen</Text>
     </View>);
 }
 
